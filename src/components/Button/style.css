@@ -29,3 +29,34 @@
     color: var(--theme) !important;
     transition: all 0.3s;
 }
+/* Default styles are already in place for larger screens */
+
+/* Small devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .btn {
+        margin: 0.5rem 0rem;
+        padding: 0.4rem !important;
+        font-size: 0.8rem;
+        border-radius: 0.2rem;
+    }
+}
+
+/* Medium devices (min-width: 601px) and (max-width: 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .btn {
+        margin: 0.6rem 0rem;
+        padding: 0.45rem !important;
+        font-size: 0.9rem;
+        border-radius: 0.22rem;
+    }
+}
+
+/* Larger devices (min-width: 1025px) */
+@media (min-width: 1025px) {
+    .btn {
+        margin: 0.7rem 0rem;
+        padding: 0.5rem !important;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+}

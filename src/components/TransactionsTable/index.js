@@ -309,6 +309,7 @@
 
 
 import React from 'react';
+import "./style.css"
 import { Table, Select, Radio } from 'antd';
 import { Line, Pie } from 'react-chartjs-2';
 import dayjs from 'dayjs';
@@ -452,7 +453,7 @@ function TransactionsTable({ transactions }) {
             <Radio.Button value="date">Sort by Date</Radio.Button>
             <Radio.Button value="amount">Sort by Amount</Radio.Button>
           </Radio.Group>
-          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", width: "400px" }}>
+          <div style={{ display: "flex",  justifyContent: "center", gap: "1rem", width: "400px" }}>
             <button className="btn" onClick={exportCSV}>
               Export to CSV
             </button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./style.css"
 import Input from '../input'
 import Button from '../Button';
@@ -19,6 +19,14 @@ function SignupSigninComponent() {
     const [loading, setLoading] =useState(false);
     const navigate = useNavigate();
     const provider = new GoogleAuthProvider();
+    
+    useEffect(() => {
+      // Clear all form fields on component mount
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    }, []);
 
 
     function signupWithEmail () {
@@ -165,13 +173,14 @@ function SignupSigninComponent() {
         <h2 className='title'>
             Login on <span style={{ color: "var(--theme)" }}>BudgetWise</span>
         </h2>
-        <form>
+        <form autoComplete="off">
             <Input 
               type="email" 
               label={"Email"} 
               state={email} 
               setState={setEmail} 
               placeholder={"Enter your email"} 
+              autoComplete="off"
             />
             <Input 
               type="password" 
@@ -179,6 +188,7 @@ function SignupSigninComponent() {
               state={password} 
               setState={setPassword} 
               placeholder={"Enter password"} 
+              autoComplete="off"
             />
             <Button 
               disabled={loading} 
@@ -199,12 +209,13 @@ function SignupSigninComponent() {
         <h2 className='title'>
             Sign up on <span style={{ color: "var(--theme)" }}>BudgetWise</span>
         </h2>
-        <form>
+        <form autoComplete="off">
             <Input 
               type="name" 
               label={"Full Name"} 
               state={name} setState={setName} 
               placeholder={"Enter your name"} 
+              autoComplete="off"
             />
             <Input 
               type="email" 
@@ -212,6 +223,7 @@ function SignupSigninComponent() {
               state={email} 
               setState={setEmail} 
               placeholder={"Enter your email"} 
+              autoComplete="off"
             />
             <Input 
               type="password" 
@@ -219,13 +231,15 @@ function SignupSigninComponent() {
               state={password} 
               setState={setPassword} 
               placeholder={"Enter password"} 
+              autoComplete="off"
             />
             <Input 
               type="password" 
               label={"Confirm Password"} 
               state={confirmPassword} 
               setState={setConfirmPassword} 
-              placeholder={"Confirm Password"} 
+              placeholder={"Confirm Password"}
+              autoComplete="off" 
             />
             <Button disabled={loading} text={loading ? "Loading..." :"Signup Using Email And Password"} onClick={() => signupWithEmail()}/>
             <p className='p-login'>Or</p>

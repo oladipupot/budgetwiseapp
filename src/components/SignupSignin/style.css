@@ -1,3 +1,15 @@
+.wrapper {
+   background-image: url('https://img.freepik.com/free-photo/bitcoin-banknotes-frame_23-2148285267.jpg?t=st=1739661358~exp=1739664958~hmac=eceb3aa7b102b3190f89b2053efcc218e8d5c92ce56073993cb61ea4cf347a70&w=740');
+   background-size: cover; /* Ensures the image covers the entire wrapper */
+   background-position: center; /* Centers the image */
+   background-repeat: no-repeat; /* Prevents the image from repeating */
+   height: 100vh; /* Makes the wrapper take the full viewport height */
+   width: 97%; /* Ensures it takes the full width */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px; /* Add padding if needed */
+ }
  .signup-wrapper {
     width: 30%;
     max-width: 600px;
@@ -17,3 +29,49 @@
    font-size: 0.8rem;
    margin: 0;
  }
+ /* Default styles are already in place for larger screens */
+
+/* Small devices (max-width: 600px) */
+@media (max-width: 600px) {
+   .signup-wrapper {
+       width: 90%;
+       padding: 1rem;
+       border-radius: 0.8rem;
+   }
+   .title {
+       font-size: 1rem;
+   }
+   .p-login {
+       font-size: 0.7rem;
+   }
+}
+
+/* Medium devices (min-width: 601px) and (max-width: 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+   .signup-wrapper {
+       width: 70%;
+       padding: 1rem 1.2rem;
+       border-radius: 0.9rem;
+   }
+   .title {
+       font-size: 1.1rem;
+   }
+   .p-login {
+       font-size: 0.75rem;
+   }
+}
+
+/* Larger devices (min-width: 1025px) */
+@media (min-width: 1025px) {
+   .signup-wrapper {
+       width: 30%;
+       padding: 1rem 1.5rem;
+       border-radius: 1rem;
+   }
+   .title {
+       font-size: 1.2rem;
+   }
+   .p-login {
+       font-size: 0.8rem;
+   }
+}

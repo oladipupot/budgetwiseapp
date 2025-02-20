@@ -1,3 +1,5 @@
+
+
 // import React, { useEffect, useState } from 'react'
 // import Header from '../components/Header'
 // import Cards from '../components/Cards'
@@ -8,40 +10,19 @@
 // import { auth, db } from '../firebase';
 // import { addDoc, collection, getDocs, query } from 'firebase/firestore';
 // import moment from "moment";
-
+// import TransactionsTable from '../components/TransactionsTable';
+// import Charts from '../components/Charts';
 
 // function Dashboard () {
-//   // const sampleTransactions = [
-//   // {
-//   //   name: "Pay day",
-//   //   type: "income",
-//   //   date: "2023-01-15",
-//   //   amount: 2000,
-//   //   tag: "salary",
-//   // },
-//   // {
-//   //   name: "Dinner",
-//   //   type: "expense",
-//   //   date: "2023-01-20",
-//   //   amount: 500,
-//   //   tag: "food",
-//   // },
-//   // {
-//   //   name: "Books",
-//   //   type: "expense",
-//   //   date: "2023-01-25",
-//   //   amount: 300,
-//   //   tag: "education",
-//   // },
-//   // ];
 //   const [transactions, setTransactions] = useState([]);
-//   const [loading, setLoading] = useState(false)
+//   const [loading, setLoading] = useState(false);
 //   const [user] = useAuthState(auth);
 //   const [isExpenseModalVisible, setIsExpenseModalVisible] = useState(false);
 //   const [isIncomeModalVisible, setIsIncomeModalVisible] = useState(false);
 //   const [income, setIncome] = useState(0);
 //   const [expense, setExpense] = useState(0);
 //   const [totalBalance, setTotalBalance] = useState(0);
+
 //   const showExpenseModal = () => {
 //     setIsExpenseModalVisible(true);
 //   };
@@ -58,18 +39,16 @@
 //     setIsIncomeModalVisible(false);
 //   };
 
-  
 //   const onFinish = (values, type) => {
 //     const newTransaction = {
 //       type: type,
-//       date: moment(values.date).format("YYYY-MM-DD"),
+//       date: values.date.format("YYYY-MM-DD"),
 //       amount: parseFloat(values.amount),
 //       tag: values.tag,
 //       name: values.name,
 //     };
 //     addTransaction(newTransaction);
 //   };
-
 
 //   async function addTransaction(transaction) {
 //     try {
@@ -79,30 +58,42 @@
 //       );
 //       console.log("Document written with ID: ", docRef.id);
 //       toast.success("Transaction Added!");
-//       let newArr = transactions;
-//       newArr.push(transaction);
-//       setTransactions(newArr)
+
+//       let newArr = [...transactions, transaction]; // Corrected mutation issue
+//       setTransactions(newArr);
+
+//       calculateBalance(newArr); // Corrected: Recalculate balance with the new transactions
 //     } catch (e) {
 //       console.error("Error adding document: ", e);
 //       toast.error("Couldn't add transaction");
 //     }
 //   }
 
+//   async function fetchTransactions() {
+//     setLoading(true);
+//     if (user) {
+//       const q = query(collection(db, `users/${user.uid}/transactions`));
+//       const querySnapshot = await getDocs(q);
+//       let transactionsArray = [];
+//       querySnapshot.forEach((doc) => {
+//         transactionsArray.push(doc.data());
+//       });
+//       setTransactions(transactionsArray);
+//       calculateBalance(transactionsArray); // Corrected: Recalculate balance after fetching transactions
+//       toast.success("Transactions Fetched!");
+//     }
+//     setLoading(false);
+//   }
 
 //   useEffect(() => {
-//   // get all docs from a collection
-//   fetchTransactions();
-//   }, []);
+//     fetchTransactions();
+//   }, [user]);
 
-//   useEffect(() => {
-//   }, [transactions])
-  
-
-//   const calculateBalance = () => {
+//   const calculateBalance = (transactionsArray) => {
 //     let incomeTotal = 0;
 //     let expensesTotal = 0;
 
-//     transactions.forEach((transaction) => {
+//     transactionsArray.forEach((transaction) => {
 //       if (transaction.type === "income") {
 //         incomeTotal += transaction.amount;
 //       } else {
@@ -115,42 +106,22 @@
 //     setTotalBalance(incomeTotal - expensesTotal);
 //   };
 
-
-//   async function fetchTransactions() {
-//     setLoading(true);
-//     if (user) {
-//       const q = query(collection(db, `users/${user.uid}/transactions`));
-//       const querySnapshot = await getDocs(q);
-//       let transactionsArray = [];
-//       querySnapshot.forEach((doc) => {
-//         // doc.data() is never undefined for query doc snapshots
-//         transactionsArray.push(doc.data());
-//       });
-//       setTransactions(transactionsArray);
-//       console.log("Transaction Array")
-//       toast.success("Transactions Fetched!");
-//     }
-//     setLoading(false);
-//   }
-   
-
 //   return (
 //     <div>
 //       <Header />
 
-//       {loading? (
+//       {loading ? (
 //         <p>Loading...</p>
 //       ) : (
 //         <>
-
-//       <Cards
-//        income={income}
-//        expense={expense}
-//        totalBalance={totalBalance}
-//        showExpenseModal={showExpenseModal}
-//        showIncomeModal={showIncomeModal}
-//        />
-//        <AddExpenseModal
+//           <Cards
+//             income={income}
+//             expense={expense}
+//             totalBalance={totalBalance}
+//             showExpenseModal={showExpenseModal}
+//             showIncomeModal={showIncomeModal}
+//           />
+//           <AddExpenseModal
 //             isExpenseModalVisible={isExpenseModalVisible}
 //             handleExpenseCancel={handleExpenseCancel}
 //             onFinish={onFinish}
@@ -160,27 +131,31 @@
 //             handleIncomeCancel={handleIncomeCancel}
 //             onFinish={onFinish}
 //           />
-//           </>)}
+//           <TransactionsTable transactions={transactions} />
+//         </>
+//       )}
 //     </div>
-//   )
+//   );
 // }
 
-// export default Dashboard
+// export default Dashboard;
 
-import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import Cards from '../components/Cards'
+
+import React, { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import Cards from '../components/Cards';
 import AddExpenseModal from '../components/Modals/addExpense';
 import AddIncomeModal from '../components/Modals/addIncome';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { auth, db } from '../firebase';
 import { addDoc, collection, getDocs, query } from 'firebase/firestore';
-import moment from "moment";
+import moment from 'moment';
 import TransactionsTable from '../components/TransactionsTable';
 import Charts from '../components/Charts';
+import ClipLoader from 'react-spinners/ClipLoader'; // Importing ClipLoader
 
-function Dashboard () {
+function Dashboard() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user] = useAuthState(auth);
@@ -209,7 +184,7 @@ function Dashboard () {
   const onFinish = (values, type) => {
     const newTransaction = {
       type: type,
-      date: values.date.format("YYYY-MM-DD"),
+      date: values.date.format('YYYY-MM-DD'),
       amount: parseFloat(values.amount),
       tag: values.tag,
       name: values.name,
@@ -223,15 +198,15 @@ function Dashboard () {
         collection(db, `users/${user.uid}/transactions`),
         transaction
       );
-      console.log("Document written with ID: ", docRef.id);
-      toast.success("Transaction Added!");
+      console.log('Document written with ID: ', docRef.id);
+      toast.success('Transaction Added!');
 
-      let newArr = [...transactions, transaction]; // Corrected mutation issue
+      let newArr = [...transactions, transaction];
       setTransactions(newArr);
 
-      calculateBalance(newArr); // Corrected: Recalculate balance with the new transactions
+      calculateBalance(newArr);
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error('Error adding document: ', e);
       toast.error("Couldn't add transaction");
     }
   }
@@ -246,8 +221,8 @@ function Dashboard () {
         transactionsArray.push(doc.data());
       });
       setTransactions(transactionsArray);
-      calculateBalance(transactionsArray); // Corrected: Recalculate balance after fetching transactions
-      toast.success("Transactions Fetched!");
+      calculateBalance(transactionsArray);
+      toast.success('Transactions Fetched!');
     }
     setLoading(false);
   }
@@ -261,7 +236,7 @@ function Dashboard () {
     let expensesTotal = 0;
 
     transactionsArray.forEach((transaction) => {
-      if (transaction.type === "income") {
+      if (transaction.type === 'income') {
         incomeTotal += transaction.amount;
       } else {
         expensesTotal += transaction.amount;
@@ -278,7 +253,9 @@ function Dashboard () {
       <Header />
 
       {loading ? (
-        <p>Loading...</p>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <ClipLoader color={'#123abc'} loading={loading} size={150} />
+        </div>
       ) : (
         <>
           <Cards
@@ -306,3 +283,4 @@ function Dashboard () {
 }
 
 export default Dashboard;
+

@@ -1,3 +1,91 @@
-@media screen {
+/* Default styles are already in place for larger screens */
+
+
+/* Small devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .my-table {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .my-table h2 {
+      font-size: 1rem;
+      text-align: center;
+      justify-content: center;
+      padding-left: 40%;
+    }
+  
+    .input-radio {
+      display: flex;
+      flex-direction: row !important;
+      text-align: center;
+      margin-top: 1rem;
+      padding-left: 40%;
+    }
+  
+    .my-table div {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+  
+    .my-table div button,
+    .my-table div label {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .my-table div input {
+      width: 100%;
+    }
+  
+    .my-table .btn {
+      width: 90%;
+      padding: 0.6rem;
+    }
+    .my-table .btn-blue {
+        width: 90%;
+        padding-left: 1rem;
+      }
+  
+    .my-table div[style*="width: 400px"] {
+      width: 50% !important;
+      display: block;
+      justify-content: center;
+      gap: 0rem;
+      padding-left: 30%;
+      padding-top: 20px;
+    }
+  }
+  
+  /* Medium devices (min-width: 601px) and (max-width: 1024px) */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .my-table {
+      width: 100%;
+    }
+  
+    .my-table h2 {
+      font-size: 1.2rem;
+    }
+  
+    .input-radio {
+      margin-top: 0;
+    }
+  
+    .my-table div[style*="width: 400px"] {
+      width: 70%;
+    }
     
-}
+  }
+  
+  /* Larger devices (min-width: 1025px) */
+  @media (min-width: 1025px) {
+    .my-table h2 {
+      font-size: 1.4rem;
+    }
+  
+    .my-table div[style*="width: 400px"] {
+      width: 400px;
+    }
+  }
+  
