@@ -154,6 +154,7 @@ import moment from 'moment';
 import TransactionsTable from '../components/TransactionsTable';
 import Charts from '../components/Charts';
 import ClipLoader from 'react-spinners/ClipLoader'; // Importing ClipLoader
+import WhatsAppChat from '../components/WhatsAppChat';
 
 function Dashboard() {
   const [transactions, setTransactions] = useState([]);
@@ -276,6 +277,9 @@ function Dashboard() {
             onFinish={onFinish}
           />
           <TransactionsTable transactions={transactions} />
+          <div className="App">
+            <WhatsAppChat />
+          </div>
         </>
       )}
     </div>

@@ -48,7 +48,7 @@
   
   @media (max-width: 768px) {
     .chart-container {
-      display: block;
+      flex-direction: column !important;
     }
   
     .chart-item {

@@ -1,4 +1,5 @@
 
+import { theme } from 'antd';
 import React from 'react';
 
 function LandingPage() {
@@ -51,7 +52,7 @@ function LandingPage() {
           padding: '0 20px',
         }}
       >
-        <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>
+        <h1 style={{ fontSize: '48px', marginBottom: '20px', color: 'white' }}>
           Take Control of Your Finances
         </h1>
         <p style={{ fontSize: '20px', maxWidth: '600px' }}>
@@ -81,7 +82,7 @@ function LandingPage() {
         }}
       >
         <h2 style={{ marginBottom: '40px' }}>Why Budget Wise?</h2>
-        <p style={{ fontSize: '18px', marginBottom: '40px' }}>
+        <p style={{ fontSize: '18px', marginBottom: '40px', color: '#000' }}>
           Track, manage, and optimize your budget with ease.
         </p>
         <div
@@ -117,7 +118,7 @@ function LandingPage() {
           textAlign: 'center',
         }}
       >
-        <p>&copy; 2025 Budget Wise. All rights reserved. <a href='https://www.linkedin.com/in/oladipupo-toheeb-838489327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'>OTF-code</a></p>
+        <p>&copy; 2025 Budget Wise. All rights reserved. <a href='https://www.linkedin.com/in/oladipupo-toheeb-838489327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' style={{color: 'blue'}}>OTF-code</a></p>
         
       </footer>
     </div>
