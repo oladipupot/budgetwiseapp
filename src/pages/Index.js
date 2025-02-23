@@ -11,8 +11,12 @@ function LandingPage() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          position: 'sticky',
+          top: '0',
+          bottom: '0',
           padding: '10px 20px',
           backgroundColor: '#2970FF',
+          zIndex: '1000',
         }}
       >
         <a
@@ -118,7 +122,7 @@ function LandingPage() {
           textAlign: 'center',
         }}
       >
-        <p>&copy; 2025 Budget Wise. All rights reserved. <a href='https://www.linkedin.com/in/oladipupo-toheeb-838489327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' style={{color: 'blue'}}>OTF-code</a></p>
+        <p>&copy; 2025 Budget Wise. All rights reserved. <a href='https://www.linkedin.com/in/oladipupo-toheeb-838489327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' style={{color: 'blue'}} target='_blank'>OTF-code</a></p>
         
       </footer>
     </div>

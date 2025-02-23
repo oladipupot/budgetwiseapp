@@ -8,9 +8,9 @@ function Cards({income, expense, totalBalance, showExpenseModal, showIncomeModal
     <div>
        <Row className='my-row'>
       <Card bordered={true}  className="my-card" >
-        <h2>Current Balance</h2>
-        <p><i class="fa-solid fa-coins"></i> {totalBalance}</p>
-        <Button text="Reset Balance" blue={true} />
+        <h2 className='mycard'>Current Balance</h2>
+        <p className='mycards'><i class="fa-solid fa-coins"></i> {totalBalance}</p>
+        {/* <Button text="" blue={true} /> */}
       </Card>
 
       <Card bordered={true}  className="my-card" >
